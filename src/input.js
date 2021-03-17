@@ -11,7 +11,7 @@ class Input
     constructor()
     {
         this.keys = {};
-    }
+    };
 
     /**
      * @method listen();
@@ -50,7 +50,7 @@ class Input
                 addKey(event.key, keyEvents.KEYPRESSED);
             }
         );
-    }
+    };
 
     /**
      * @method addKey();
@@ -70,7 +70,7 @@ class Input
         this.keys[key.toLowerCase()] = state;
 
         return key;
-    }
+    };
 
     /**
      * @method removeKey();
@@ -89,7 +89,7 @@ class Input
         delete this.keys[key.toLowerCase()];
 
         return key;
-    }
+    };
 
     /**
      * @method keyState();
@@ -100,7 +100,7 @@ class Input
     keyState = (key) => 
     {
         return this.keys[key];
-    }
+    };
 }
 
 export { Input };

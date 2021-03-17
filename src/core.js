@@ -22,7 +22,7 @@ class Core
         this.input = new Input();
 
         this.start();
-    }
+    };
 
     /**
      * @method loop();
@@ -40,7 +40,7 @@ class Core
         this.update();
      
         // this.x += 10 * dt; // Increase 'x' by 10 units per millisecond
-    }
+    };
 
     /**
      * @method start();
@@ -49,7 +49,7 @@ class Core
     start = () =>
     {
         this.frame = requestAnimationFrame(this.loop.bind(this));
-    }
+    };
 
     /**
      * @method update();
@@ -64,7 +64,7 @@ class Core
         {
             console.log("hello world");
         }
-    }
+    };
 
     /**
      * @method pause();
@@ -73,7 +73,7 @@ class Core
     pause = () =>
     {
         cancelAnimationFrame(this.frame);
-    }
+    };
 }
 
 export { Core };
