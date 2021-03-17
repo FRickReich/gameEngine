@@ -10,7 +10,7 @@ class Core
      * @param { number } fps current application speed in frames per second.
      * @param { number } frame current frame in the application update loop.
      * @param { number } timestamp current timestamp
-     * @param { deltaTime } deltatime a millisecond in consideration of current fps.
+     * @param { number } deltatime a millisecond in consideration of current fps.
      */
     constructor()
     {
