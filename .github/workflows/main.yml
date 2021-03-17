@@ -18,15 +18,11 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-        
-    - name: JSDoc Action
+    
+    - name: Generate JSDoc documentation
       # You may pin to the exact commit or the version.
-      # uses: andstor/jsdoc-action@2fb2b536605bdebace2b92abb0601155d5ddc688
-      uses: andstor/jsdoc-action@v1.2.0
+      # uses: brunokrauss/jsdoc-action@f8aeebcec1be0bbd297001fc506c1c58b4545fe0
+      uses: brunokrauss/jsdoc-action@3
       with:
-        # Source directory to build documentation from
-        source_dir: ./src
-        # Output folder for the generated documentation
-        output_dir: ./doc
-        # Recurse into subdirectories when scanning for source files
-        recurse: true
+        # Path to Javascript File
+        jsdoc-path: './src' # default is src
