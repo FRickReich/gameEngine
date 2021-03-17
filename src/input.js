@@ -1,22 +1,32 @@
 import keyEvents from './enums/keyEvents.js';
 
+/**
+ * @class Input
+ */
 class Input
 {
+    /**
+     * @constructor
+     */
     constructor()
     {
         this.keys = {};
     }
 
+    /**
+     * @method listen();
+     * @description Listens to window events.
+     */
     listen = () =>
     {
-        const handleKey = this.handleKey.bind(this);
+        const addKey = this.addKey.bind(this);
         const removeKey = this.removeKey.bind(this);
 
         window.addEventListener(
             "keydown",
             function(event)
             {
-                handleKey(event.key, keyEvents.KEYDOWN);
+                addKey(event.key, keyEvents.KEYDOWN);
             }
         );
 
@@ -28,7 +38,7 @@ class Input
                  * @todo Up-State does not clean itself after firing.
                  * @description If up is fired, it will stay, and not clean up after usage.
                  */
-                handleKey(event.key, keyEvents.KEYUP);
+                addKey(event.key, keyEvents.KEYUP);
                 // removeKey(event.key);
             }
         );
@@ -37,13 +47,21 @@ class Input
             "keypress",
             function(event)
             {
-                handleKey(event.key, keyEvents.KEYPRESSED);
+                addKey(event.key, keyEvents.KEYPRESSED);
             }
         );
     }
 
-    handleKey = (key, state) =>
+    /**
+     * @method addKey();
+     * @description Adds the key to the keys array.
+     * @param { string } key The key that has triggered the event.
+     * @param { string } state The state the key is in.
+     * @returns { string }
+     */
+    addKey = (key, state) =>
     {
+        // Check if the space key has been pressed, and change its key to "space"
         if(key === " ")
         {
             key = "space";
@@ -51,19 +69,34 @@ class Input
 
         this.keys[key.toLowerCase()] = state;
 
-        // this.removeKey(key);
+        return key;
     }
 
+    /**
+     * @method removeKey();
+     * @description Removes the key from the keys array.
+     * @param {*} key 
+     * @returns { string }
+     */
     removeKey = (key) =>
     {
+        // Check if the space key has been pressed, and change its key to "space"
         if(key === " ")
         {
             key = "space";
         }
 
         delete this.keys[key.toLowerCase()];
+
+        return key;
     }
 
+    /**
+     * @method keyState();
+     * @description Returns the state of a given key.
+     * @param { string } key The key to be checked.
+     * @returns { string }
+     */
     keyState = (key) => 
     {
         return this.keys[key];

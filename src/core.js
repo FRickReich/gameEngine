@@ -1,5 +1,8 @@
 import { Input } from './input.js';
 
+/**
+ * @class Core
+ */
 class Core
 {
     /**
@@ -21,6 +24,10 @@ class Core
         this.start();
     }
 
+    /**
+     * @method loop();
+     * @description General game loop and all its configurations.
+     */
     loop = () =>
     {   
         this.frame = requestAnimationFrame(this.loop.bind(this));
@@ -53,7 +60,7 @@ class Core
         this.input.listen();
         // this renders every frame
 
-        if(this.input.keyState("a") === "PRESSED")
+        if(this.input.keyState("space") === "PRESSED")
         {
             console.log("hello world");
         }
