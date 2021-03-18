@@ -5,11 +5,11 @@ class Transform
         this.position = { x: 0, y: 0 };
         this.scale = { x: 0, y: 0 };
         this.rotation = 0;
-        this.anchor = [
-            
-            [ true, false, false ], // left, center, right
-            [ true, false, false ]  // top, center, bottom
-        ]
+        this.anchor =
+        {
+            vertical: { top: true, center: false, bottom: false },
+            horizontal: { left: true, center: false, right: false }
+        }
         
         /**
          * @todo Add local position and scale functionality
@@ -105,40 +105,25 @@ class Transform
     {
         const newPosition = pos.split(" ");
 
-        this.anchor[0].fill(false);
-        this.anchor[1].fill(false);
+        console.log(newPosition);
 
-        if(newPosition[0] === "top")
-        {
-            this.anchor[0][0] = true;
-        }
-        else if(newPosition[0] === "center")
-        {
-            this.anchor[0][1] = true;
-        }
-        else if(newPosition[0] === "bottom")
-        {
-            this.anchor[0][2] = true;
-        }
-
+        this.anchor.vertical.top = false;
+        this.anchor.vertical.center = false;
+        this.anchor.vertical.bottom = false;
+        
+        this.anchor.horizontal.left = false;
+        this.anchor.horizontal.center = false;
+        this.anchor.horizontal.right = false;
+        
+        this.anchor.vertical[newPosition[0]] = true;
+        
         if(newPosition[1] !== undefined)
         {
-            if(newPosition[1] === "left")
-            {
-                this.anchor[1][0] = true;
-            }
-            else if(newPosition[1] === "center")
-            {
-                this.anchor[1][1] = true;
-            }
-            else if(newPosition[1] === "right")
-            {
-                this.anchor[1][2] = true;
-            }
+        this.anchor.horizontal[newPosition[1]] = true;
         }
         else
         {
-            this.anchor[1][0] = true;
+            this.anchor.horizontal.left = true;
         }
     }
 }

@@ -8,6 +8,6 @@ const core = new Core();
 const testTransform = new Transform();
 console.log(testTransform.anchor);
 
-testTransform.setAnchor("center");
+testTransform.setAnchor("center right");
 
 console.log(testTransform.anchor);
