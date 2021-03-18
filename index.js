@@ -1,13 +1,9 @@
 import { Core } from './src/core.js';
-import { Transform } from './src/transform.js';
 
 const core = new Core();
 
+console.log(core);
+
 // window.onload = core.init;
 
-const testTransform = new Transform();
-console.log(testTransform.anchor);
-
-testTransform.setAnchor("center right");
-
-console.log(testTransform.anchor);
+// const testTransform = new Transform();

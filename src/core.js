@@ -1,4 +1,5 @@
 import { Input } from './input.js';
+import { Transform } from './transform.js';
 
 /**
  * @class Core
@@ -18,6 +19,7 @@ class Core
         this.frame = 0;
         this.timestamp;
         this.deltaTime;
+        this.transform = new Transform();
 
         this.input = new Input();
 

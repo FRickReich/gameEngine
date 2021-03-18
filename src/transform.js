@@ -105,16 +105,9 @@ class Transform
     {
         const newPosition = pos.split(" ");
 
-        console.log(newPosition);
+        this.anchor.vertical = { top: false, center: false, bottom: false };
+        this.anchor.horizontal = { left: false, center: false, right: false };
 
-        this.anchor.vertical.top = false;
-        this.anchor.vertical.center = false;
-        this.anchor.vertical.bottom = false;
-        
-        this.anchor.horizontal.left = false;
-        this.anchor.horizontal.center = false;
-        this.anchor.horizontal.right = false;
-        
         this.anchor.vertical[newPosition[0]] = true;
         
         if(newPosition[1] !== undefined)
