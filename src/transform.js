@@ -119,7 +119,7 @@ class Transform
         
         if(newPosition[1] !== undefined)
         {
-        this.anchor.horizontal[newPosition[1]] = true;
+            this.anchor.horizontal[newPosition[1]] = true;
         }
         else
         {
