@@ -1,4 +1,4 @@
-import keyEvent from './enums/keyEvent.js';
+import keyEvent from '../enums/keyEvent.js';
 
 /**
  * @class Input

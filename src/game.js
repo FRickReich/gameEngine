@@ -1,60 +1,104 @@
+import module from './enums/module.js';
+
 /**
- * @class Game
- * @description The main Game class
+ * @todo recreate game class more OOP
  */
 class Game
-{
+{ 
     /**
      * @constructor
-     * @param { object } options 
      */
-    constructor({ target, size, position, background } = {})
+    constructor()
+    {
+        this.fps = 60;
+        this.timestamp;
+        this.frame = 0;
+        this.oldFrame;
+        this.interval = 1000/this.fps;
+        this.deltaTime;
+        this.modules = {};
+        this.scene = undefined;
+
+        this.setup();
+    }
+
+    setup = ({ target, size, position, background } = {}) =>
     {
         this.target = target || "#game";
-        this.parent = document.querySelector(this.target);
+        this.scene = document.querySelector(this.target);
         this.size = size || { width: "100vw", height: "100vh" }
         this.position = position || "absolute";
         this.background = background || "#708090";
 
-        this.initialize();
-    }
-
-    /**
-     * @method resetBody();
-     * @description resets the used document bodys padding and margin, returns boolean to confirm the operation.
-     * @returns { boolean }
-     */
-    resetBody()
-    {
         const body = document.querySelector("body");
         body.style.padding = "0";
         body.style.margin = "0";
 
-        return true;
+        this.scene.style.background = this.background;
+        this.scene.style.height = this.size.height;
+        this.scene.style.width = this.size.width;
+        this.scene.style.position = this.position;
+        this.scene.style.overflow = "hidden";
+        this.scene.style.zIndex = "-10000";
+    }
+    
+    start = () =>
+    {   
+        try
+        {
+            this.init();
+        }
+        catch (error)
+        {
+            console.log("ERROR: No .init(); method found in '" + this.constructor.name + "' class.");
+        }
+        this.frame = requestAnimationFrame(this.gameLoop.bind(this));
+
+    };
+
+    gameLoop(timestamp)
+    {
+        this.timestamp = timestamp;
+
+        if(!this.oldFrame)
+        {
+            this.oldFrame = timestamp;
+        }
+
+        this.frame = requestAnimationFrame(this.gameLoop.bind(this));
+        
+        this.deltaTime = timestamp - this.oldFrame;
+
+        if(this.deltaTime > this.interval)
+        {
+            this.oldFrame = timestamp - (this.deltaTime % (1000/this.fps));
+
+            try
+            {
+                this.update();
+            }
+            catch (error)
+            {
+                console.log("ERROR: No .update(); method found in '" + this.constructor.name + "' class.");
+            }
+        }
     }
 
     /**
-     * @method initialize();
-     * @description basic initialization of game parameters, returns boolean to confirm the operation.
-     * @returns { boolean }
+     * @method addModule();
+     * @description Adds a module to the game instance
+     * @param { string } name 
      */
-    initialize()
+    addModule(name)
     {
-        /**
-         * @todo Create an assortment of methods to initialize the different parts of the core game.
-         */
-        
-        /**
-         * @todo Make the default sizes match css parameters, given from the outside.
-         */
-        this.parent.style.background = this.background;
-        this.parent.style.height = this.size.height;
-        this.parent.style.width = this.size.width;
-        this.parent.style.position = this.position;
-        this.parent.style.overflow = "hidden";
-        this.parent.style.zIndex = "-10000";
-
-        return true;
+        try
+        {
+            this.modules[name] = new module[name]({ name: this.constructor.name });
+        }
+        catch (error)
+        {
+            console.log("ERROR: Could not find a module called " + name);
+        }
     }
 }
 
