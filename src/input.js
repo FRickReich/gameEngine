@@ -1,4 +1,4 @@
-import keyEvents from './enums/keyEvents.js';
+import keyEvent from './enums/keyEvent.js';
 
 /**
  * @class Input
@@ -26,7 +26,7 @@ class Input
             "keydown",
             function(event)
             {
-                addKey(event.key, keyEvents.KEYDOWN);
+                addKey(event.key, keyEvent.KEYDOWN);
             }
         );
 
@@ -38,7 +38,7 @@ class Input
                  * @todo Up-State does not clean itself after firing.
                  * @description If up is fired, it will stay, and not clean up after usage.
                  */
-                addKey(event.key, keyEvents.KEYUP);
+                addKey(event.key, keyEvent.KEYUP);
                 // removeKey(event.key);
             }
         );
@@ -47,7 +47,7 @@ class Input
             "keypress",
             function(event)
             {
-                addKey(event.key, keyEvents.KEYPRESSED);
+                addKey(event.key, keyEvent.KEYPRESSED);
             }
         );
     };

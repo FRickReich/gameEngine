@@ -1,8 +1,11 @@
-const keyEvents =
+/**
+ * @enum keyEvent
+ */
+const keyEvent =
 {
     KEYUP: "UP",
     KEYDOWN: "DOWN",
     KEYPRESSED: "PRESSED"
 };
 
-export default keyEvents;
+export default keyEvent;

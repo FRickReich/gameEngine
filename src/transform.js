@@ -1,15 +1,15 @@
+import anchorPosition from './enums/anchorPosition.js'
+
 class Transform
 {
-    constructor()
+    constructor({ position, scale } = {})
     {
-        this.position = { x: 0, y: 0 };
-        this.scale = { x: 0, y: 0 };
+        this.position = position || { x: 0, y: 0 };
+        this.scale = scale || { x: 0, y: 0 };
         this.rotation = 0;
-        this.anchor =
-        {
-            vertical: { top: true, center: false, bottom: false },
-            horizontal: { left: true, center: false, right: false }
-        }
+        this.anchor = { horizontal: {}, vertical: {} }
+
+        this.setAnchor(anchorPosition.TOPLEFT);
         
         /**
          * @todo Add local position and scale functionality
@@ -118,6 +118,8 @@ class Transform
         {
             this.anchor.horizontal.left = true;
         }
+
+        return this.anchor;
     }
 }
 
