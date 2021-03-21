@@ -18,6 +18,7 @@ class Scene
     draw()
     {
         this.element.style.position = "absolute";
+        this.element.style.backgroundColor = "#FF0000";
         this.element.style.top = 0;
         this.element.style.left = 0;
     }
