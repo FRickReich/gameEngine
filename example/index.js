@@ -7,26 +7,26 @@ class MyGame extends Game
     init = () =>
     {
         this.modules.Input.listen();
-
-        this.entities[0].transform.setScaleY(600);
+        this.scene.entitites[0].transform.setScaleY(500);
     }
     
     update = () =>
     {
-        this.entities[0].render();
-        this.entities[1].render();
+        this.scene.entitites[0].render();
+        this.scene.entitites[1].render();
 
         if(this.modules.Input.keyState("w") === keyEvent.KEYPRESSED)
         {
-            // console.log("Key pressed");
-            this.entities[0].transform.setPositionY(this.entities[0].transform.position.y -= 0.25 * this.deltaTime);
+            // moves the entity
+            this.scene.entitites[0].transform.setPositionY(this.scene.entitites[0].transform.position.y -= 0.25 * this.deltaTime);
         }
 
         if(this.modules.Input.keyState("s") === keyEvent.KEYPRESSED)
         {
-            // console.log("Key pressed");
-            this.scene.style.top = this.scene.style.top += 0.75 * this.deltaTime + "px";
+            // moves the scene
+            this.scene.moveX(this.scene.offsetX() + 0.2 * this.deltaTime + "px");
         }
+
     }
 }
 
