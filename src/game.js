@@ -25,12 +25,6 @@ class Game
         this.setup();
     }
 
-    addEntity({ name, transform, type, backgroundColor } = {})
-    {
-        this.entities.push(new Entity({ name, transform, type, backgroundColor, scene: this.scene }));
-
-    }
-
     setup = ({ target, size, position, background } = {}) =>
     {
         this.target = target || "#game";
@@ -40,9 +34,10 @@ class Game
         this.position = position || "absolute";
         this.background = background || "#708090";
 
-        this.scene = document.createElement("div");
-        this.scene.classList.add("scene");
-        this.viewport.appendChild(this.scene);
+        this.scene = new Scene();
+        this.scene.draw();
+        
+        this.viewport.appendChild(this.scene.element);
 
         const body = document.querySelector("body");
         body.style.padding = "0";
@@ -54,8 +49,6 @@ class Game
         this.viewport.style.position = this.position;
         this.viewport.style.overflow = "hidden";
         this.viewport.style.zIndex = "-10000";
-
-        this.scene.style.position = "absolute";
 
         // this.viewport.onmouseover = function() { alert("Hover!"); }
         // this.viewport.onmouseover = () =>  this.mouseOver();
@@ -123,6 +116,11 @@ class Game
         {
             console.log("ERROR: Could not find a module called " + name);
         }
+    }
+
+    addEntity({ name, transform, type, backgroundColor } = {})
+    {
+        this.scene.entitites.push(new Entity({ name, transform, type, backgroundColor, scene: this.scene }));
     }
 }
 

@@ -22,7 +22,7 @@ class Entity
         this.entity = document.createElement(this.type);
         this.entity.id = slugifyString(this.name) + "___" + createUUID();
         this.entity.classList.add("entity");
-        this.scene.append(this.entity);
+        this.scene.element.append(this.entity);
     }
 
     render = () =>
