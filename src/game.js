@@ -1,4 +1,5 @@
 import module from './enums/module.js';
+import { Entity } from './entity.js';
 
 /**
  * @todo recreate game class more OOP
@@ -18,8 +19,15 @@ class Game
         this.deltaTime;
         this.modules = {};
         this.scene = undefined;
+        this.entities = [];
 
         this.setup();
+    }
+
+    addEntity({ name, transform, type, backgroundColor } = {})
+    {
+        this.entities.push(new Entity({ name, transform, type, backgroundColor, scene: this.scene }));
+
     }
 
     setup = ({ target, size, position, background } = {}) =>
