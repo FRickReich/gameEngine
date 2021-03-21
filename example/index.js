@@ -15,17 +15,42 @@ class MyGame extends Game
         this.scene.entitites[0].render();
         this.scene.entitites[1].render();
 
+        // Moves the entity
         if(this.modules.Input.keyState("w") === keyEvent.KEYPRESSED)
         {
-            // moves the entity
             this.scene.entitites[0].transform.setPositionY(this.scene.entitites[0].transform.position.y -= 0.25 * this.deltaTime);
         }
-
         if(this.modules.Input.keyState("s") === keyEvent.KEYPRESSED)
         {
-            // moves the scene
+            this.scene.entitites[0].transform.setPositionY(this.scene.entitites[0].transform.position.y += 0.25 * this.deltaTime);
+        }
+        if(this.modules.Input.keyState("a") === keyEvent.KEYPRESSED)
+        {
+            this.scene.entitites[0].transform.setPositionX(this.scene.entitites[0].transform.position.x -= 0.25 * this.deltaTime);
+        }
+        if(this.modules.Input.keyState("d") === keyEvent.KEYPRESSED)
+        {
+            this.scene.entitites[0].transform.setPositionX(this.scene.entitites[0].transform.position.x += 0.25 * this.deltaTime);
+        }
+
+        // Move the scene
+        if(this.modules.Input.keyState("arrowup") === keyEvent.KEYDOWN)
+        {
+            this.scene.moveY(this.scene.offsetY() - 0.2 * this.deltaTime + "px");
+        }
+        if(this.modules.Input.keyState("arrowdown") === keyEvent.KEYDOWN)
+        {
+            this.scene.moveY(this.scene.offsetY() + 0.2 * this.deltaTime + "px");
+        }
+        if(this.modules.Input.keyState("arrowleft") === keyEvent.KEYDOWN)
+        {
+            this.scene.moveX(this.scene.offsetX() - 0.2 * this.deltaTime + "px");
+        }
+        if(this.modules.Input.keyState("arrowright") === keyEvent.KEYDOWN)
+        {
             this.scene.moveX(this.scene.offsetX() + 0.2 * this.deltaTime + "px");
         }
+        
     }
 }
 
@@ -39,7 +64,7 @@ myGame.addEntity({ name: "Player", transform: new Transform({
     position: { x: 100, y: 100 },
     scale: { x: 200, y: 200 }
     })
-}, () => {});
+});
 
 myGame.addEntity({ name: "Test" })
 

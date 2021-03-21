@@ -38,7 +38,7 @@ class Scene
     
     moveY(y)
     {
-        this.element.style.top = x;
+        this.element.style.top = y;
     }
 
     offset()
