@@ -1,4 +1,6 @@
-
+/**
+ * @todo Add documentation for scene and other classes
+ */
 class Scene
 {
     constructor()

@@ -59,18 +59,29 @@ class Game
         
     // }
     
-    start = () =>
-    {   
+    /**
+     * @method start
+     * @param { function } callback
+     * @callback state returns a boolean depending on the success of the operation
+     */
+    start = (callback) =>
+    {
+        let state = false;
+
         try
         {
             this.init();
+
+            state = true;
+
+            this.frame = requestAnimationFrame(this.gameLoop.bind(this));
         }
         catch (error)
         {
             console.log("ERROR: No .init(); method found in '" + this.constructor.name + "' class.");
         }
-        this.frame = requestAnimationFrame(this.gameLoop.bind(this));
 
+        callback && callback(state);
     };
 
     gameLoop(timestamp)
@@ -118,7 +129,7 @@ class Game
         }
     }
 
-    addEntity({ name, transform, type, backgroundColor } = {})
+    addEntity = ({ name, transform, type, backgroundColor } = {}) =>
     {
         this.scene.entitites.push(new Entity({ name, transform, type, backgroundColor, scene: this.scene }));
     }

@@ -26,7 +26,6 @@ class MyGame extends Game
             // moves the scene
             this.scene.moveX(this.scene.offsetX() + 0.2 * this.deltaTime + "px");
         }
-
     }
 }
 
@@ -40,7 +39,7 @@ myGame.addEntity({ name: "Player", transform: new Transform({
     position: { x: 100, y: 100 },
     scale: { x: 200, y: 200 }
     })
-});
+}, () => {});
 
 myGame.addEntity({ name: "Test" })
 
