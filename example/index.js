@@ -21,6 +21,12 @@ class MyGame extends Game
             // console.log("Key pressed");
             this.entities[0].transform.setPositionY(this.entities[0].transform.position.y -= 0.25 * this.deltaTime);
         }
+
+        if(this.modules.Input.keyState("s") === keyEvent.KEYPRESSED)
+        {
+            // console.log("Key pressed");
+            this.scene.style.top = this.scene.style.top += 0.75 * this.deltaTime + "px";
+        }
     }
 }
 
