@@ -1,4 +1,4 @@
-import anchorPosition from './enums/anchorPosition.js'
+import anchorPosition from './../enums/anchorPosition.js'
 
 class Transform
 {

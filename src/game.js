@@ -1,6 +1,6 @@
 import module from './enums/module.js';
-import { Entity } from './entity.js';
-import { Scene } from './scene.js';
+import { Entity } from './modules/entity.js';
+import { Scene } from './modules/scene.js';
 
 /**
  * @todo recreate game class more OOP

@@ -1,6 +1,6 @@
 import keyEvent from '../src/enums/keyEvent.js';
 import { Game } from '../src/game.js';
-import { Transform } from '../src/transform.js';
+import { Transform } from '../src/modules/transform.js';
 
 class MyGame extends Game
 {
