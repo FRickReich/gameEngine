@@ -1,9 +1,14 @@
 import module from './enums/module.js';
-import { Entity } from './modules/entity.js';
-import { Scene } from './modules/scene.js';
+import { Entity } from './entity.js';
+import { Scene } from './scene.js';
+import { slugifyString } from './utils/slugifyString.js';
 
 /**
  * @todo recreate game class more OOP
+ */
+/**
+ * @class Game
+ * Main game class for setting up the game and loop.
  */
 class Game
 { 
@@ -20,7 +25,6 @@ class Game
         this.deltaTime;
         this.modules = {};
         this.scene = undefined;
-        this.entities = [];
 
         this.setup();
     }
@@ -127,11 +131,6 @@ class Game
         {
             console.log("ERROR: Could not find a module called " + name);
         }
-    }
-
-    addEntity = ({ name, transform, type, backgroundColor } = {}) =>
-    {
-        this.scene.entitites.push(new Entity({ name, transform, type, backgroundColor, scene: this.scene }));
     }
 }
 
