@@ -15,9 +15,10 @@ class Entity
         this.id = id || createUUID();
         this.transform = transform || new Transform();
         this.type = type || "span";
-        this.backgroundColor = backgroundColor || "#00FF00";
+        this.backgroundColor = backgroundColor || "#ECECEC";
         this.scene = scene;
         this.modules = {};
+        this.isColliding = false;
         
         this.create();
 

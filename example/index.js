@@ -16,7 +16,6 @@ class MyGame extends Game
     update = () =>
     {
         this.playerEntity.render();
-        this.playerEntity.collider.show();
 
         this.scene.getEntityByName("Test").render();
 
@@ -38,6 +37,11 @@ class MyGame extends Game
         {
             // this.scene.entitites[0].transform.setPositionX(this.scene.entitites[0].transform.position.x += 0.25 * this.deltaTime);
             this.playerEntity.transform.setRotation(this.playerEntity.transform.rotation += 0.25 * this.deltaTime);
+        }
+
+        if(this.modules.Input.keyState("arrowup") === keyEvent.KEYDOWN)
+        {
+            this.modules.EventEmitter.fire('testEvent', "hello");
         }
 
         // // Move the scene
@@ -65,6 +69,14 @@ const myGame = new MyGame();
 
 myGame.addModule("SaveGame");
 myGame.addModule("Input");
+myGame.addModule("EventEmitter");
+
+const testEventHandler = (data) => {
+    console.log('Was fired: ', data);
+};
+
+// myEventEmitter.on('testEvent', handleMyEvent);
+myGame.modules.EventEmitter.on('testEvent', testEventHandler);
 
 myGame.scene.addEntity({ name: "Player", transform: new Transform({
     position: { x: 100, y: 100 },
