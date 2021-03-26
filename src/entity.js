@@ -1,4 +1,5 @@
 import { Transform } from "./transform.js";
+import { Collider } from './collider.js';
 import { slugifyString } from './utils/slugifyString.js';
 import { createUUID } from './utils/createUUID.js';
 
@@ -8,7 +9,7 @@ import { createUUID } from './utils/createUUID.js';
  */
 class Entity
 {
-    constructor({ name, id, transform, type, backgroundColor, scene } = {})
+    constructor({ name, id, transform, collider, type, backgroundColor, scene } = {})
     {
         this.name = name || "New Entity";
         this.id = id || createUUID();
@@ -17,8 +18,10 @@ class Entity
         this.backgroundColor = backgroundColor || "#00FF00";
         this.scene = scene;
         this.modules = {};
-
+        
         this.create();
+
+        this.collider = collider || new Collider({ parent: this });
     }
 
     create = () => 
@@ -42,6 +45,12 @@ class Entity
             scaleX(${ this.transform.scale.y })
         `
         this.entity.style.backgroundColor = this.backgroundColor;
+        this.entity.style.display = "flex";
+        this.entity.style.justifyContent = "center";
+        this.entity.style.alignItems = "center";
+
+        // display: flex;
+// justify-content: center;
     }
 
     setBackgroundColor = (backgroundColor) =>

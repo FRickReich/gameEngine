@@ -16,6 +16,7 @@ class MyGame extends Game
     update = () =>
     {
         this.playerEntity.render();
+        this.playerEntity.collider.show();
 
         this.scene.getEntityByName("Test").render();
 
