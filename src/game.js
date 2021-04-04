@@ -13,9 +13,10 @@ class Game
     /**
      * @constructor
      */
-    constructor()
+    constructor({ config } = {})
     {
-        this.fps = 60;
+        this.configFile = config || undefined;
+        this.fps = this.configFile.defaults.fps;
         this.timestamp;
         this.frame = 0;
         this.oldFrame;
@@ -27,11 +28,11 @@ class Game
         this.setup();
     }
 
-    setup = ({ target, size, position, background } = {}) =>
+    setup = ({ root, size, position, background } = {}) =>
     {
-        this.target = target || "#game";
+        this.root = root || this.configFile.defaults.root;
 
-        this.viewport = document.querySelector(this.target);
+        this.viewport = document.querySelector(this.root);
         this.size = size || { width: "100vw", height: "100vh" }
         this.position = position || "absolute";
         this.background = background || "#708090";

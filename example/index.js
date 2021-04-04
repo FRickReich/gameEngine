@@ -1,33 +1,54 @@
 import Game from '../src/game.js';
+import config from './config.js';
 
 class MyGame extends Game
-{   
-    init = () =>
-    {
-        this.addModule("Input");
-        this.addModule("UI");
-        
-        inputManager = this.modules.Input;
-        ui = this.modules.UI;
-
-        inputManager.listen();
-
-        console.log(ui);
-    }
-    update = () =>
-    {
-        if(inputManager.keyState("w") === inputManager.event.KEYPRESSED)
-        {
-            console.log("test");
-        }
-    }
+{
+    init = () => {}
+    update = () => {}
 }
 
-let inputManager;
-let ui;
-const myGame = new MyGame();
+const myGame = new MyGame({ config });
 
 myGame.start();
+
+console.log(myGame)
+
+
+
+
+
+
+
+
+
+// class MyGame extends Game
+// {   
+//     init = () =>
+//     {
+//         this.addModule("Input");
+//         this.addModule("UI");
+        
+//         inputManager = this.modules.Input;
+//         ui = this.modules.UI;
+
+//         inputManager.listen();
+
+//         console.log(ui);
+//     }
+//     update = () =>
+//     {
+//         if(inputManager.keyState("w") === inputManager.event.KEYPRESSED)
+//         {
+//             console.log("test");
+//         }
+//     }
+// }
+
+// let inputManager;
+// let ui;
+// const myGame = new MyGame();
+
+// myGame.start();
 
 
 
