@@ -1,5 +1,4 @@
 import Game from '../src/game.js';
-import keyEvent from '../src/enums/keyEvent.js';
 
 class MyGame extends Game
 {   
@@ -17,7 +16,7 @@ class MyGame extends Game
     }
     update = () =>
     {
-        if(inputManager.keyState("w") === keyEvent.KEYPRESSED)
+        if(inputManager.keyState("w") === inputManager.event.KEYPRESSED)
         {
             console.log("test");
         }

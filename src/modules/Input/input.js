@@ -1,4 +1,4 @@
-import keyEvent from '../../enums/keyEvent.js';
+import keyEvent from './keyEvent.js';
 
 /**
  * @class Input
@@ -11,6 +11,7 @@ class Input
     constructor()
     {
         this.keys = {};
+        this.event = keyEvent;
         this.delay = 100;
     };
 
