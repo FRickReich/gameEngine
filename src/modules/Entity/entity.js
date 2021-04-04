@@ -1,7 +1,7 @@
-import { Transform } from "./transform.js";
-import { Collider } from './collider.js';
-import { slugifyString } from './utils/slugifyString.js';
-import { createUUID } from './utils/createUUID.js';
+import { Transform } from "../Transform/transform.js";
+import { Collider } from '../Collider/collider.js';
+import { slugifyString } from '../../utils/slugifyString.js';
+import { createUUID } from '../../utils/createUUID.js';
 
 /**
  * @class Entity

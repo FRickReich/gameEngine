@@ -1,7 +1,5 @@
 import module from './enums/module.js';
-import { Entity } from './entity.js';
-import { Scene } from './scene.js';
-import { slugifyString } from './utils/slugifyString.js';
+import { Scene } from './modules/Scene/scene.js';
 
 /**
  * @todo recreate game class more OOP
@@ -135,3 +133,4 @@ class Game
 }
 
 export { Game };
+export default Game;

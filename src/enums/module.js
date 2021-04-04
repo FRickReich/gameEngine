@@ -1,11 +1,13 @@
-import { SaveGame } from '../modules/savegame.js';
-import { Input } from '../modules/input.js';
-import { EventEmitter } from '../modules/eventEmitter.js';
+import { SaveGame } from '../modules/SaveGame/savegame.js';
+import { Input } from '../modules/Input/input.js';
+import { EventEmitter } from '../modules/EventEmitter/eventEmitter.js';
+import { UI } from '../modules/UI/ui.js';
 
 const module = {
     'SaveGame': SaveGame,
     'Input': Input,
-    'EventEmitter': EventEmitter
+    'EventEmitter': EventEmitter,
+    'UI': UI,
 };
 
 export default module;

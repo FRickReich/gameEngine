@@ -1,4 +1,4 @@
-import { Entity } from './entity.js';
+import { Entity } from './../Entity/entity.js';
 
 /**
  * @todo Add documentation for scene and other classes
