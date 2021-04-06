@@ -2,11 +2,21 @@ import UIComponent from './../uiComponent.js';
 
 class Button extends UIComponent
 {
-    constructor({ config } = {})
+    constructor({ text } = {})
     {
-        super({ config });
-
+        super();
         this.type = "BUTTON";
+        this.elementText = text || undefined;
+    }
+
+    get text()
+    {
+        return this.elementText;
+    }
+
+    set text(text)
+    {
+        this.elementText = text; 
     }
 }
 

@@ -26,7 +26,9 @@ class UIManager extends Module
 
         this.createLayer(this.layerAmount);
         
-        this.layers[0].addComponent(new Button());
+        const newButton = new Button({ text: "Hallo"});
+
+        this.layers[0].addComponent(newButton);
     };
 
     /**

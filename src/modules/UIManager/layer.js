@@ -66,20 +66,16 @@ class Layer
         newComponent.layer = this;
         newComponent.create();
 
+        if(newComponent.text !== undefined)
+        {
+            newComponent.element.innerText = newComponent.text;
+        }
+
         this.components.push(newComponent);
 
         this.element.appendChild(newComponent.element);
 
-        console.log(newComponent)
-
-        // const newComponent = document.createElement("DIV");
-        // newComponent.classList.add("component");
-
-        // this.components.push(newComponent);
-
-        // this.element.appendChild(newComponent)
-
-        // return component;
+        return newComponent;
     }
     
     set layerNumber(num)
