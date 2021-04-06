@@ -9,9 +9,12 @@ class MyGame extends Game
 
 const myGame = new MyGame({ config });
 
+myGame.addModule("UIManager");
+
 myGame.start();
 
-console.log(myGame)
+console.log(myGame);
+
 
 
 

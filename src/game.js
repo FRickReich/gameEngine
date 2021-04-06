@@ -34,24 +34,46 @@ class Game
 
         this.viewport = document.querySelector(this.root);
         this.size = size || { width: "100vw", height: "100vh" }
-        this.position = position || "absolute";
+
+        // this.position = position || "absolute";
+        
         this.background = background || "#708090";
 
         this.scene = new Scene();
         this.scene.draw();
         
+        const moduleContainer = document.createElement("DIV");
+        moduleContainer.id = "modules";
+        // moduleContainer.style.position = "absolute";
+
+        this.viewport.appendChild(moduleContainer);
+
         this.viewport.appendChild(this.scene.element);
 
         const body = document.querySelector("body");
         body.style.padding = "0";
         body.style.margin = "0";
 
+        // container.style.backgroundColor = "red";
+        // container.style.display = "flex";
+        // container.style.justifyContent = "center";
+        // container.style.alignItems = "center";
+        // container.style.width = "200px";
+        // container.style.height = "200px";
+
+        // this.viewport.style.height = this.size.height;
+        // this.viewport.style.width = this.size.width;
+        // this.viewport.style.position = this.position;
+        
         this.viewport.style.background = this.background;
-        this.viewport.style.height = this.size.height;
+        this.viewport.style.display = "flex";
         this.viewport.style.width = this.size.width;
-        this.viewport.style.position = this.position;
-        this.viewport.style.overflow = "hidden";
+        this.viewport.style.height = this.size.height;
         this.viewport.style.zIndex = "-10000";
+        this.viewport.style.overflow = "hidden";
+        
+
+        document.title = this.configFile.game.title + " - v" + this.configFile.game.version;
 
         // this.viewport.onmouseover = function() { alert("Hover!"); }
         // this.viewport.onmouseover = () =>  this.mouseOver();
@@ -124,14 +146,14 @@ class Game
     {
         try
         {
-            this.modules[name] = new module[name]({ name: this.constructor.name });
+            this.modules[name] = new module[name]({ name: this.constructor.name, config: this.configFile });
         }
         catch (error)
         {
+            console.log(error);
             console.log("ERROR: Could not find a module called " + name);
         }
     }
 }
 
-export { Game };
 export default Game;

@@ -1,2 +1,2 @@
 # gameEngine
-A little game engine
+A Zero-Dependencies, Modular JavaScript Game Engine.

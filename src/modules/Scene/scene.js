@@ -25,10 +25,21 @@ class Scene
     
     draw()
     {
-        this.element.style.position = "absolute";
-        this.element.style.backgroundColor = "#FF0000";
-        this.element.style.top = 0;
-        this.element.style.left = 0;
+        // this.element.style.backgroundColor = "#FFFF00";
+        this.element.style.width = "100%";
+        this.element.style.height = "100%";
+
+
+        // this.element.style.position = "absolute";
+        // this.element.style.top = 0;
+        // this.element.style.left = 0;
+
+         // container.style.backgroundColor = "red";
+        // container.style.display = "flex";
+        // container.style.justifyContent = "center";
+        // container.style.alignItems = "center";
+        // container.style.width = "200px";
+        // container.style.height = "200px";
     }
 
     addEntity = ({ name, transform, type, backgroundColor } = {}) =>

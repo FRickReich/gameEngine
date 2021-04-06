@@ -1,7 +1,7 @@
 export default {
     game: 
     {
-        name: "Default Game",
+        title: "Example Game",
         version: "0.1.0",
         author: "",
     },
@@ -31,8 +31,10 @@ export default {
             config: {}
         },
         {
-            name: "UI",
-            config: {}
+            name: "UIManager",
+            config: {
+                root: "#UIManager"
+            }
         }
     ]
 }
