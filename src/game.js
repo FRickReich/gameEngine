@@ -1,18 +1,22 @@
 import module from './enums/module.js';
-import { Entity } from './entity.js';
-import { Scene } from './scene.js';
+import { Scene } from './modules/Scene/scene.js';
 
 /**
  * @todo recreate game class more OOP
+ */
+/**
+ * @class Game
+ * Main game class for setting up the game and loop.
  */
 class Game
 { 
     /**
      * @constructor
      */
-    constructor()
+    constructor({ config } = {})
     {
-        this.fps = 60;
+        this.configFile = config || undefined;
+        this.fps = this.configFile.defaults.fps;
         this.timestamp;
         this.frame = 0;
         this.oldFrame;
@@ -20,42 +24,56 @@ class Game
         this.deltaTime;
         this.modules = {};
         this.scene = undefined;
-        this.entities = [];
 
         this.setup();
     }
 
-    addEntity({ name, transform, type, backgroundColor } = {})
+    setup = ({ root, size, position, background } = {}) =>
     {
-        this.entities.push(new Entity({ name, transform, type, backgroundColor, scene: this.scene }));
+        this.root = root || this.configFile.defaults.root;
 
-    }
-
-    setup = ({ target, size, position, background } = {}) =>
-    {
-        this.target = target || "#game";
-
-        this.viewport = document.querySelector(this.target);
+        this.viewport = document.querySelector(this.root);
         this.size = size || { width: "100vw", height: "100vh" }
-        this.position = position || "absolute";
+
+        // this.position = position || "absolute";
+        
         this.background = background || "#708090";
 
-        this.scene = document.createElement("div");
-        this.scene.classList.add("scene");
-        this.viewport.appendChild(this.scene);
+        this.scene = new Scene();
+        this.scene.draw();
+        
+        const moduleContainer = document.createElement("DIV");
+        moduleContainer.id = "modules";
+        // moduleContainer.style.position = "absolute";
+
+        this.viewport.appendChild(moduleContainer);
+
+        this.viewport.appendChild(this.scene.element);
 
         const body = document.querySelector("body");
         body.style.padding = "0";
         body.style.margin = "0";
 
-        this.viewport.style.background = this.background;
-        this.viewport.style.height = this.size.height;
-        this.viewport.style.width = this.size.width;
-        this.viewport.style.position = this.position;
-        this.viewport.style.overflow = "hidden";
-        this.viewport.style.zIndex = "-10000";
+        // container.style.backgroundColor = "red";
+        // container.style.display = "flex";
+        // container.style.justifyContent = "center";
+        // container.style.alignItems = "center";
+        // container.style.width = "200px";
+        // container.style.height = "200px";
 
-        this.scene.style.position = "absolute";
+        // this.viewport.style.height = this.size.height;
+        // this.viewport.style.width = this.size.width;
+        // this.viewport.style.position = this.position;
+        
+        this.viewport.style.background = this.background;
+        this.viewport.style.display = "flex";
+        this.viewport.style.width = this.size.width;
+        this.viewport.style.height = this.size.height;
+        this.viewport.style.zIndex = "-10000";
+        this.viewport.style.overflow = "hidden";
+        
+
+        document.title = this.configFile.game.title + " - v" + this.configFile.game.version;
 
         // this.viewport.onmouseover = function() { alert("Hover!"); }
         // this.viewport.onmouseover = () =>  this.mouseOver();
@@ -66,18 +84,29 @@ class Game
         
     // }
     
-    start = () =>
-    {   
+    /**
+     * @method start
+     * @param { function } callback
+     * @callback state returns a boolean depending on the success of the operation
+     */
+    start = (callback) =>
+    {
+        let state = false;
+
         try
         {
             this.init();
+
+            state = true;
+
+            this.frame = requestAnimationFrame(this.gameLoop.bind(this));
         }
         catch (error)
         {
             console.log("ERROR: No .init(); method found in '" + this.constructor.name + "' class.");
         }
-        this.frame = requestAnimationFrame(this.gameLoop.bind(this));
 
+        callback && callback(state);
     };
 
     gameLoop(timestamp)
@@ -117,13 +146,14 @@ class Game
     {
         try
         {
-            this.modules[name] = new module[name]({ name: this.constructor.name });
+            this.modules[name] = new module[name]({ name: this.constructor.name, config: this.configFile });
         }
         catch (error)
         {
+            console.log(error);
             console.log("ERROR: Could not find a module called " + name);
         }
     }
 }
 
-export { Game };
+export default Game;

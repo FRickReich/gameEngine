@@ -1,11 +1,16 @@
-import anchorPosition from './enums/anchorPosition.js'
+import anchorPosition from './anchorPosition.js'
 
+/**
+ * @class Transform
+ * A transform, to move, scale, rotate and generally position an entity.
+ */
 class Transform
 {
-    constructor({ position, scale } = {})
+    constructor({ position, scale, size } = {})
     {
         this.position = position || { x: 0, y: 0 };
-        this.scale = scale || { x: 100, y: 100 };
+        this.scale = scale || { x: 1, y: 1 };
+        this.size = size || { x: 100, y: 100 };
         this.rotation = 0;
         this.anchor = { horizontal: {}, vertical: {} }
         this.collision = null;
@@ -82,6 +87,38 @@ class Transform
     setScaleY = (y) =>
     {
         this.scale.y = y;
+    }
+
+    /**
+     * @method setSize();
+     * @description sets the horizontal and vertical size of the element.
+     * @param { number } x - horizontal amount of size in pixel
+     * @param { number } y - vertical amount of size in pixel
+     */
+    setSize = (x, y) =>
+    {
+        this.size.x = x;
+        this.size.y = y;
+    }
+ 
+     /**
+      * @method setSizeX();
+      * @description sets the horizontal size of the element.
+      * @param { number } x - horizontal size in pixel
+      */
+    setSizeX = (x) =>
+    {
+        this.size.x = x;
+    }
+
+     /**
+      * @method setSizeY();
+      * @description sets the vertical size of the element.
+      * @param { number } y - vertical size in pixel
+      */
+    setSizeY = (y) =>
+    {
+        this.size.y = y;
     }
 
     /**

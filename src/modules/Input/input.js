@@ -1,4 +1,4 @@
-import keyEvent from '../enums/keyEvent.js';
+import keyEvent from './keyEvent.js';
 
 /**
  * @class Input
@@ -11,6 +11,8 @@ class Input
     constructor()
     {
         this.keys = {};
+        this.event = keyEvent;
+        this.delay = 100;
     };
 
     /**
@@ -21,6 +23,7 @@ class Input
     {
         const addKey = this.addKey.bind(this);
         const removeKey = this.removeKey.bind(this);
+        const delay = this.delay;
 
         window.addEventListener(
             "keydown",
@@ -38,8 +41,12 @@ class Input
                  * @todo Up-State does not clean itself after firing.
                  * @description If up is fired, it will stay, and not clean up after usage.
                  */
-                addKey(event.key, keyEvent.KEYUP);
-                // removeKey(event.key);
+                addKey(event.key, keyEvent.KEYUP, () =>
+                {
+                    setTimeout(function(){
+                        removeKey(event.key);
+                    }, delay);
+                });
             }
         );
 
@@ -59,7 +66,7 @@ class Input
      * @param { string } state The state the key is in.
      * @returns { string }
      */
-    addKey = (key, state) =>
+    addKey = (key, state, callback) =>
     {
         // Check if the space key has been pressed, and change its key to "space"
         if(key === " ")
@@ -68,6 +75,8 @@ class Input
         }
 
         this.keys[key.toLowerCase()] = state;
+
+        callback && callback();
 
         return key;
     };

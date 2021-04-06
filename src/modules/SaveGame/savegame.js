@@ -9,11 +9,11 @@ class SaveGame
         this.currentGame;
     }
 
-    save()
+    save(callback)
     {
         if(this.type === "LocalStorage")
         {
-            localStorage.setItem("key", "value")
+            localStorage.setItem("key", "newValue")
             return true;
         }
     }
